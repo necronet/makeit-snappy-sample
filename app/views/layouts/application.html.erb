@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield (:title) %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="container">
+	<div id="header">
+		<%= link_to "Make it Snapy Q&A", root_path %>
+		<div id="searchbar">
+		<%= render 'common/search_form'%>
+		</div>
+	</div>
+
+	
+		
+	<div id="nav">
+	<ul>
+		<li> <%= link_to "Home", root_path %></li>
+
+		<% if logged_in? %>
+		<li> <%= link_to "Your Q's", your_questions_path %></li>
+		<li> <%= link_to "Logout (#{current_user.username})", logout_path, method: 'delete' %></li>
+		<% else %>
+		<li> <%= link_to "Register", register_path %></li>
+		<li> <%= link_to "Login", login_path %></li>
+		<% end %>
+	</ul>
+	</div>
+
+	<div id="content">
+		<% flash.each do |key, value| %>
+			<p id="message"><%= value %></p>
+		<% end %>
+
+		<%= yield %>
+	</div>
+
+	<div id="footer">
+		&copy Make it snapy Q&A <%= Date.today.year %>
+	</div>
+
+	</div>
+
+</div>
+</body>
+</html>

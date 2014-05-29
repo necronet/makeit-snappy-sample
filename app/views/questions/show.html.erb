@@ -1,0 +1,30 @@
+<% provide(:title, "View Question") %>
+
+<h1>
+<%= @question.user.username.capitalize %> asks :
+</h1>
+
+<p>
+<%= @question.body %>
+</p>
+
+<div id="answers">
+
+<h2>Answers</h2>
+<% if @question.answers.any? %>
+	<ul> 
+	<%= render @question.answers %>
+	</ul>
+<% else %>
+	<p>There is no answer yet!</p>
+<% end %>
+</div>
+
+<div id="post-answers">
+<h2>Answer this question</h2>
+<% if logged_in? %>
+	<%= render 'answers/answer_form' %>
+<% else %>
+	<p>Please login to post an answer for this question.</p>
+<% end %>
+</div>

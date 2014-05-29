@@ -1,0 +1,28 @@
+<%- provide :title, "Make it Snapy Q&A - Register" %>
+
+<h1>Register</h1>
+
+<%= form_for(@user) do |f| %>
+
+	<%= render 'common/form_errors', object: @user %>
+
+	<p>
+		<%= f.label :username %><br />
+		<%= f.text_field :username %><br />
+	</p>
+
+	<p>
+		<%= f.label :password %><br />
+		<%= f.password_field :password %><br />
+	</p>
+
+	<p>
+		<%= f.label :password_confirmation, 'Confirm' %><br />
+		<%= f.password_field :password_confirmation %><br />
+	</p>
+
+	<p>
+	<%=f.submit "Register" %>
+	</p>
+
+<% end %>
